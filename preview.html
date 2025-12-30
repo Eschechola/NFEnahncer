@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pré-visualização - XML AI Enhancer</title>
+    <link rel="stylesheet" href="preview.css">
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">XML</div>
+            <div class="header-title">AI-Powered XML Invoice Improvement</div>
+            <div class="header-nav">
+                <a class="nav-link" href="index.html">Upload</a>
+                <a class="nav-link active">Pré-visualização</a>
+                <a class="nav-link" href="result.html">Comparação</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="preview-header">
+            <div class="preview-title">Pré-visualização do Arquivo</div>
+            <div class="preview-nav">
+                <a class="preview-nav-link active">Preview</a>
+                <a class="preview-nav-link">Improve</a>
+            </div>
+        </div>
+
+        <div class="preview-container">
+            <div class="code-block scrollbar" id="previewCode">
+            </div>
+        </div>
+
+        <button class="improve-button" onclick="result()">
+            <span class="improve-icon">✨</span>
+            <span>Melhorar</span>
+        </button>
+    </div>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            const xmlContent = localStorage.getItem('xmlContent');
+            if (xmlContent) {
+                const previewCode = document.getElementById('previewCode');
+                previewCode.textContent = xmlContent;
+            }
+        });
+
+        function result() {
+            window.location.href = 'result.html';
+        }
+    </script>
+</body>
+</html>

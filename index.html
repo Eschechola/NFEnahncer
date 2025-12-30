@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload XML - XML AI Enhancer</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">XML</div>
+            <div class="header-title">XML AI Enhancer</div>
+            <div class="header-nav">
+                <a class="nav-link active">Upload</a>
+                <a class="nav-link" href="preview.html">Pré-visualização</a>
+                <a class="nav-link" href="result.html">Comparação</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="upload-container">
+            <h1 class="upload-title">Upload XML</h1>
+
+            <div class="upload-zone" id="uploadZone" ondrop="handleDrop(event)" ondragover="handleDragOver(event)"
+                ondragleave="handleDragLeave(event)">
+                <div class="upload-icon">📄</div>
+                <p class="upload-text">Arraste e solte um arquivo XML aqui</p>
+            </div>
+
+            <button class="upload-button" onclick="triggerFileInput()">Selecionar Arquivo</button>
+            <input type="file" id="fileInput" accept=".xml" onchange="handleFileSelect(event)">
+        </div>
+    </div>
+
+    <script>
+        const uploadZone = document.getElementById('uploadZone');
+
+        function handleDragOver(event) {
+            event.preventDefault();
+            uploadZone.classList.add('dragover');
+        }
+
+        function handleDragLeave(event) {
+            uploadZone.classList.remove('dragover');
+        }
+
+        function handleDrop(event) {
+            event.preventDefault();
+            uploadZone.classList.remove('dragover');
+
+            const files = event.dataTransfer.files;
+            if (files.length > 0) {
+                handleFileSelect({ target: { files: files } });
+            }
+        }
+
+        function triggerFileInput() {
+            document.getElementById('fileInput').click();
+        }
+
+        function handleFileSelect(event) {
+            const files = event.target.files;
+
+            if (files.length <= 0) {
+                alert('Por favor, selecione um arquivo XML válido.');
+                return;
+            }
+
+
+            const file = files[0];
+
+            if (file.type === 'text/xml' || file.name.endsWith('.xml')) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    localStorage.setItem('xmlContent', e.target.result);
+                    localStorage.setItem('xmlFileName', file.name);
+
+                    window.location.href = 'preview.html';
+                };
+
+                reader.readAsText(file);
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparação - XML AI Enhancer</title>
+    <link rel="stylesheet" href="result.css">
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">XML</div>
+            <div class="header-title">XML AI Enhancer</div>
+            <div class="header-nav">
+                <a class="nav-link" href="index.html">Upload</a>
+                <a class="nav-link" href="preview.html">Pré-visualização</a>
+                <a class="nav-link active">Comparação</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="comparison-container">
+            <div class="comparison-header">
+                <div class="comparison-column-header">Arquivo Original</div>
+                <div class="comparison-column-header">Arquivo Melhorado</div>
+            </div>
+
+            <div class="comparison-content">
+                <div class="comparison-column scrollbar">
+                    <div class="comparison-code" id="originalCode">&lt;invoice&gt;
+  &lt;invoice_number&gt;100&lt;/invoice_number&gt;
+  &lt;date&gt;2024-01-15&lt;/date&gt;
+  &lt;vendor&gt;Loja Exemplo&lt;/vendor&gt;
+  &lt;address&gt;Rua Teste 123&lt;/address&gt;
+  &lt;items&gt;
+    &lt;description&gt;Produto A&lt;/description&gt;
+    &lt;quantity&gt;25&lt;/quantity&gt;
+    &lt;price&gt;50.00&lt;/price&gt;
+  &lt;/items&gt;
+  &lt;total&gt;1250.00&lt;/total&gt;
+&lt;/invoice&gt;</div>
+                </div>
+
+                <div class="comparison-column scrollbar">
+                    <div class="comparison-code" id="improvedCode">&lt;invoice&gt;
+  &lt;invoice_number&gt;100&lt;/invoice_number&gt;
+  &lt;issue_date&gt;2024-01-15&lt;/issue_date&gt;
+  &lt;vendor&gt;
+    &lt;name&gt;Loja Exemplo&lt;/name&gt;
+    &lt;address&gt;Rua Teste 123&lt;/address&gt;
+  &lt;/vendor&gt;
+  &lt;items&gt;
+    &lt;item&gt;
+      &lt;description&gt;Produto A&lt;/description&gt;
+      &lt;quantity&gt;25&lt;/quantity&gt;
+      &lt;unit_price&gt;50.00&lt;/unit_price&gt;
+      <span class="added">&lt;total_price&gt;1250.00&lt;/total_price&gt;</span>
+    &lt;/item&gt;
+  &lt;/items&gt;
+  <span class="added">&lt;total_amount&gt;1250.00&lt;/total_amount&gt;</span>
+&lt;/invoice&gt;</div>
+                </div>
+            </div>
+
+            <div class="comparison-actions">
+                <button class="btn-refazer" onclick="preview()">Refazer</button>
+                <button class="btn-aprovar" onclick="approveChanges()">Aprovar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function preview() {
+            window.location.href = 'tela2.html';
+        }
+
+        function approveChanges() {
+            alert('Alterações aprovadas! O arquivo foi salvo com sucesso.');
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
